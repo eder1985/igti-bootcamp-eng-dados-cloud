@@ -1,11 +1,11 @@
-name: deploy_master_workflow
+name: deploy_workflow
 
 on:
   push:
     branches: [main]
 
 jobs:
-  master_job:
+  main_job:
     name: Deploy to Datalake
     runs-on: ubuntu-latest
 
