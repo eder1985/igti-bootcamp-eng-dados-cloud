@@ -26,7 +26,7 @@ jobs:
           terraform_version: 1.1.7
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credential@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}}
           aws-secret-access-id: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
