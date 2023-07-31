@@ -4,8 +4,7 @@ on:
   pull_request:
     branches: [main]
 
-permissions:
-  contents: read
+permissions: read-all
 
 jobs:
   pull_request_job:
@@ -13,15 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: action/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Set up Python 3.8
-        uses: action/setup-python@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: "3.10"
 
       - name: Hashicorp - Setup Terraform
-        uses: hashicorp/setup-terraform@v1.2.1
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.1.7
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credential@v1
