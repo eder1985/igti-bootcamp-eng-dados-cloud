@@ -4,33 +4,39 @@ on:
   push:
     branches: [main]
 
+permissions: read-all
+
 jobs:
   main_job:
     name: Deploy to Datalake
     runs-on: ubuntu-latest
 
     steps:
-      - uses: action/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-      - name: Set up Python 3.8
-        uses: action/setup-python@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: "3.10"
 
       - name: Hashicorp - Setup Terraform
-        uses: hashicorp/setup-terraform@v1.2.1
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.1.7
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credential@v1
+        uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}}
-          aws-secret-access-id: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
           aws-region: us-east-2
 
       - name: Iac Apply
         env:
           COMMAND_IAC: terraform
-        run: cd iac
+        run: |
+          cd modulo_1/iac
           $COMMAND_IAC init
           $COMMAND_IAC validate
           $COMMAND_IAC plan
