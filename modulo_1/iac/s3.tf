@@ -1,4 +1,3 @@
-
 resource "aws_s3_bucket" "datalake" {
   bucket = "${var.base_bucket_name}-${var.environment}-${var.account_id}"
   acl    = "private"
@@ -13,16 +12,4 @@ resource "aws_s3_bucket" "datalake" {
     IES   = "IGTI"
     CURSO = "EDC"
   }
-}
-
-resource "aws_s3_bucket_object" "codigo_spark" {
-  bucket = aws_s3_bucket.datalake.id
-  key    = "emr-code/pyspark/job_spark/job_spark_from_tf.py"
-  acl    = "private"
-  source = "../glue-job-imdb-movies.py"
-  etag   = filemd5("../glue-job-imdb-movies.py")
-}
-
-provider "aws" {
-  region = "${var.region}"
 }
