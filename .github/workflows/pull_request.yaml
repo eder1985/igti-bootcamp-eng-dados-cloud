@@ -1,12 +1,12 @@
-name: deploy_master_workflow
+name: pull_request_workflow
 
 on:
-  push:
+  pull_request:
     branches: {master}
 
 jobs:
-  master_job:
-    name: Deploy to Datalake
+  pull_request_job:
+    name: Test infra on PR
     runs-on: ubuntu-latest
 
   steps:
@@ -34,4 +34,3 @@ jobs:
       $COMMAND_IAC init
       $COMMAND_IAC validate
       $COMMAND_IAC plan
-      $COMMAND_IAC apply -auto-approve
