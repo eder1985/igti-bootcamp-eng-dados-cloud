@@ -2,7 +2,7 @@ name: deploy_master_workflow
 
 on:
   push:
-    branches: [master]
+    branches: [main]
 
 jobs:
   master_job:
