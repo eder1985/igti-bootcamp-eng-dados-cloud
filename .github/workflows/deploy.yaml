@@ -10,29 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: action/checkout@v2
+      - uses: action/checkout@v2
 
-    - name: Set up Python 3.8
-      uses: action/setup-python@v2
-      with:
-        python-version: 3.8
-  
-    - name: Hashicorp - Setup Terraform
-      uses: hashicorp/setup-terraform@v1.2.1
+      - name: Set up Python 3.8
+        uses: action/setup-python@v2
+        with:
+          python-version: 3.8
 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credential@v1
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}}
-        aws-secret-access-id: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-        aws-region: us-east-2
+      - name: Hashicorp - Setup Terraform
+        uses: hashicorp/setup-terraform@v1.2.1
 
-    - name: Iac Apply
-      env:
-        COMMAND_IAC: terraform
-      run:
-        cd iac
-        $COMMAND_IAC init
-        $COMMAND_IAC validate
-        $COMMAND_IAC plan
-        $COMMAND_IAC apply -auto-approve
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credential@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-id: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+          aws-region: us-east-2
+
+      - name: Iac Apply
+        env:
+          COMMAND_IAC: terraform
+        run: cd iac
+          $COMMAND_IAC init
+          $COMMAND_IAC validate
+          $COMMAND_IAC plan
+          $COMMAND_IAC apply -auto-approve
