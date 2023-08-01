@@ -7,12 +7,12 @@ def handler(event, context):
     client = boto3.client('emr', region_name='us-east-2')
 
     cluster_id = client.run_job_flow(
-                Name='EMR-Ney-IGTI-delta',
+                Name='EMR-Eder-IGTI-delta',
                 ServiceRole='EMR_DefaultRole',
                 JobFlowRole='EMR_EC2_DefaultRole',
                 VisibleToAllUsers=True,
-                LogUri='s3://datalake-ney-igti-edc-tf/emr-logs',
-                ReleaseLabel='emr-6.3.0',
+                LogUri='s3://datalake-eder-igti-edc-tf-prod-086556745643/emr-logs',
+                ReleaseLabel='emr-6.12.0',
                 Instances={
                     'InstanceGroups': [
                         {
@@ -30,10 +30,10 @@ def handler(event, context):
                             'InstanceCount': 1,
                         }
                     ],
-                    'Ec2KeyName': 'ney-igti-teste',
+                    'Ec2KeyName': 'eder-igti-ec2-key',
                     'KeepJobFlowAliveWhenNoSteps': True,
                     'TerminationProtected': False,
-                    'Ec2SubnetId': 'subnet-1df20360'
+                    'Ec2SubnetId': 'subnet-06066a0e1bb27fbd9'
                 },
 
                 Applications=[
@@ -93,7 +93,7 @@ def handler(event, context):
                                  '--conf', 'spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog', 
                                  '--master', 'yarn',
                                  '--deploy-mode', 'cluster',
-                                 's3://datalake-ney-igti-edc-tf/emr-code/pyspark/01_delta_spark_insert.py'
+                                 's3://datalake-eder-igti-edc-tf-prod-086556745643/emr-code/pyspark/01_delta_spark_insert.py'
                                  ]
                     }
                 },
@@ -108,7 +108,7 @@ def handler(event, context):
                                  '--conf', 'spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog', 
                                  '--master', 'yarn',
                                  '--deploy-mode', 'cluster',
-                                 's3://datalake-ney-igti-edc-tf/emr-code/pyspark/02_delta_spark_upsert.py'
+                                 's3://datalake-eder-igti-edc-tf-prod-086556745643/emr-code/pyspark/02_delta_spark_upsert.py'
                                  ]
                     }
                 }],
