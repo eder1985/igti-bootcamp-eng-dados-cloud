@@ -60,7 +60,7 @@ resource "aws_iam_policy" "lambda" {
         },
         {
           "Action": "iam:PassRole",
-          "Resource": ["arn:aws:iam::086556745643:role/EMR_DefaultRole_V2",
+          "Resource": ["arn:aws:iam::086556745643:role/EMR_DefaultRole",
                        "arn:aws:iam::086556745643:role/EMR_EC2_DefaultRole"],
           "Effect": "Allow"
         }
@@ -69,6 +69,52 @@ resource "aws_iam_policy" "lambda" {
 EOF
 }
 
+resource "aws_iam_role" "emr_default_role" {
+  name = "EMR_DefaultRole"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "elasticmapreduce.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "emr_default_role" {
+  role       = aws_iam_role.emr_default_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonElasticMapReduceRole"
+}
+
+resource "aws_iam_role" "emr_ec2_default_role" {
+  name = "EMR_EC2_DefaultRole"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "ec2.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_instance_profile" "emr_ec2_default_role" {
+  name = aws_iam_role.emr_ec2_default_role.name
+  role = aws_iam_role.emr_ec2_default_role.name
+}
+
+resource "aws_iam_role_policy_attachment" "emr_ec2_default_role" {
+  role       = aws_iam_role.emr_ec2_default_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonElasticMapReduceforEC2Role"
+}
 
 resource "aws_iam_role_policy_attachment" "lambda_attach" {
   role       = aws_iam_role.lambda.name

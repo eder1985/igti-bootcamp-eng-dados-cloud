@@ -8,7 +8,7 @@ def handler(event, context):
 
     cluster_id = client.run_job_flow(
                 Name='EMR-Eder-IGTI-delta',
-                ServiceRole='EMR_DefaultRole_V2',
+                ServiceRole='EMR_DefaultRole',
                 JobFlowRole='EMR_EC2_DefaultRole',
                 VisibleToAllUsers=True,
                 LogUri='s3://datalake-eder-igti-edc-tf-prod-086556745643/emr-logs',
