@@ -1,6 +1,8 @@
 #documentation
 docs/*.zip
 
+#key-pairs
+docs/*.ppk
 
 # Local .terraform directories
 **/.terraform/*
