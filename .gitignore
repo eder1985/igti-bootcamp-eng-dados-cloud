@@ -3,6 +3,7 @@ docs/*.zip
 
 #key-pairs
 docs/*.ppk
+docs/putty.exe
 
 # Local .terraform directories
 **/.terraform/*
