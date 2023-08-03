@@ -22,7 +22,7 @@
 #   etag   = filemd5("../etl/02_delta_spark_upsert.py")
 # }
 
-resource "aws_s3_bucket_object" "ftp_to_s3" {
+resource "aws_s3_bucket_object" "ftp_to_s3_script" {
   bucket = aws_s3_bucket.bucket_rais.id
   key    = "scripts/python/transfer-ftp-to-s3.py"
   acl    = "private"
