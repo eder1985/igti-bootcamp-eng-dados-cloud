@@ -3,7 +3,7 @@ docs/*.zip
 
 #key-pairs
 docs/*.ppk
-docs/putty.exe
+docs/airflow-variables.json
 
 # Local .terraform directories
 **/.terraform/*
