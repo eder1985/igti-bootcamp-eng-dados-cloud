@@ -177,31 +177,31 @@ EOF
 # ## GLUE ROLE ##
 # ###############
 
-# resource "aws_iam_role" "glue_role" {
-#   name = "IGTIGlueCrawlerRole"
+resource "aws_iam_role" "glue_role" {
+  name = "IGTIGlueRole"
 
-#   assume_role_policy = <<EOF
-# {
-#   "Version": "2012-10-17",
-#   "Statement": [
-#     {
-#       "Action": "sts:AssumeRole",
-#       "Principal": {
-#         "Service": "glue.amazonaws.com"
-#       },
-#       "Effect": "Allow",
-#       "Sid": ""
-#     }
-#   ]
-# }
-# EOF
+  assume_role_policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Action": "sts:AssumeRole",
+      "Principal": {
+        "Service": "glue.amazonaws.com"
+      },
+      "Effect": "Allow",
+      "Sid": ""
+    }
+  ]
+}
+EOF
 
-#   tags = {
-#     IES = "IGTI"
-#     CURSO = "EDC"
-#   }
+  tags = {
+    IES = "IGTI"
+    CURSO = "EDC"
+  }
 
-# }
+}
 
 
 # resource "aws_iam_policy" "glue_policy" {
