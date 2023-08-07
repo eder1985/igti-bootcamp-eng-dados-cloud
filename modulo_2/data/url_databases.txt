@@ -1,0 +1,7 @@
+https://homepages.dcc.ufmg.br/~pcalais/XPE/engenharia-dados/big-data-spark/
+
+https://homepages.dcc.ufmg.br/~pcalais/XPE/engenharia-dados/big-data-spark/aulas-gravadas/2.2/numbers.zip
+https://homepages.dcc.ufmg.br/~pcalais/XPE/engenharia-dados/big-data-spark/aulas-gravadas/2.4/README.md
+https://homepages.dcc.ufmg.br/~pcalais/XPE/engenharia-dados/big-data-spark/aulas-gravadas/3.2/sf-fire-calls.csv
+https://homepages.dcc.ufmg.br/~pcalais/XPE/engenharia-dados/big-data-spark/trabalho-pratico/title_basics.tsv
+https://homepages.dcc.ufmg.br/~pcalais/XPE/engenharia-dados/big-data-spark/trabalho-pratico/title_ratings.tsv
