@@ -4,7 +4,7 @@ from io import BytesIO
 
 FTP_SERVER = 'ftp.mtps.gov.br'
 S3_BUCKET = 'datalake-eder-igti-edc-rais'
-S3_KEY_PREFIX = 'ftpfiles/'
+S3_KEY_PREFIX = 'ftpfiles'
 
 def upload_file_from_ftp_to_s3(ftp_server, ftp_file, s3_bucket, s3_key):
     # Conectar ao servidor FTP
